@@ -17,13 +17,24 @@ document.getElementById("generate").addEventListener('click', performAction);
 
 function performAction(e) {
     zipCode = document.getElementById('zip').value;
-    if (zipCode === '') return document.getElementById('zipCodeReq').style.display = 'block';
+    if (zipCode === '') {
+        return document.getElementById('zipCodeReq').style.display = 'block'
+    }
+    else {
+        document.getElementById('zipCodeReq').style.display = 'none'
+    }
 
     const feeling = document.getElementById('feelings').value;
-    if (feeling === '') return document.getElementById('feelingReq').style.display = 'block';
+    if (feeling === '') {
+        return document.getElementById('feelingReq').style.display = 'block'
+    }
+    else {
+        document.getElementById('feelingReq').style.display = 'none'
+    }
 
     //build url
     const url = `${baseUrl}?zip=${zipCode},${countryCode}&appid=${apiKey}`;
+    
     retrieveWeatherData(url)
         .then(function (data) {
             let dataObj = {
@@ -45,7 +56,7 @@ const retrieveWeatherData = async (url) => {
     try {
         const weatherData = await request.json();
         console.log(weatherData);
-        if (request.status == 404) {
+        if (!request.ok) {
             alert(weatherData.message);
             return Promise.reject(weatherData.message)
         }
@@ -84,9 +95,10 @@ const updateUI = async () => {
     const request = await fetch('/weathers/all');
     try {
         const allData = await request.json();
-        document.getElementById('temp').innerHTML = allData.temp
-        document.getElementById("date").innerHTML = allData.date;
-        document.getElementById('content').innerHTML = allData.feel;
+        console.log(allData)
+        document.getElementById('temp').innerHTML = `<i class="fa-solid fa-cloud"></i> ${Math.round(allData.temp)} degrees`;
+        document.getElementById("date").innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${allData.date}`;
+        document.getElementById('content').innerHTML = `<i class="fa-solid fa-comment"></i> ${allData.feel}`;
 
     } catch (error) {
         console.log("error", error);

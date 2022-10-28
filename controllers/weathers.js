@@ -11,6 +11,7 @@ const schema = Joi.object({
 });
 
 const getAll = (req, res) => {
+    console.log(projectData);
     res.json(projectData);
 }
 
@@ -24,7 +25,7 @@ const postDate = (req, res) => {
         ...projectData,
         message: 'user Data with feelings, added successfully'
     }
-
+    console.log(responseObj);
     res.json(responseObj);
 }
 
