@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Journal</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <video class="video"autoplay muted loop id="myVideo"
+  
+    src="https://prod-streaming-video-msn-com.akamaized.net/57a9bbfd-75f3-4988-885b-73fe21ca0e72/94fbc05d-9630-4d5a-a331-9d572637c447.mp4"
+    ></video>
+  <div id="app">
+    <div class="holder headline">
+      Weather Journal App
+    </div>
+    <div class="holder zip">
+      <label for="zip">Enter Zipcode here</label>
+      <input required type="text" id="zip" placeholder="enter zip code here">
+      <p id="zipCodeReq" class="error">* 'zipCode' is required</p>
+    </div>
+    <div class="holder feel">
+      <label for="feelings">How are you feeling today?</label>
+      <div class="fellings-flext">
+        <textarea required class="myInput" id="feelings" placeholder="Enter your feelings here" rows="6"
+          cols="30"></textarea>
+        <p id="feelingReq" class="error">* 'feeling' is required</p>
+        <button id="generate" type="submit"> Generate </button>
+      </div>
+    </div>
+    <div class="holder entry">
+      <div class="title">Most Recent Entry</div>
+      <div id="entryHolder">
+        <div id="date"></div>
+        <div id="temp"></div>
+        <div id="content"></div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js" type="text/javascript"></script>
+
+</body>
+
+</html>
