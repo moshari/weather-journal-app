@@ -37,7 +37,6 @@ function performAction(e) {
 
     retrieveWeatherData(url)
         .then(function (data) {
-            if(data === undefined)  throw new Error('no data return form weather endpoint');
             let dataObj = {
                 'temp': data.main.temp,
                 'date': newDate,
@@ -49,7 +48,7 @@ function performAction(e) {
             updateUI();
         })
         .catch((error) => {
-            console.error(`We are unable to process your request at this time, ${error}`);
+            console.error(`We are unable to process your request at this time: ${error}`);
           });
 }
 
@@ -61,7 +60,7 @@ const retrieveWeatherData = async (url) => {
         console.log(weatherData);
         if (!request.ok) {
             alert(weatherData.message);
-            throw new Error(`HTTP error: ${request.status}`);
+            return Promise.reject(weatherData.message);
           }
         return weatherData;
     }
